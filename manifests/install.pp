@@ -4,7 +4,9 @@ class passbolt::install inherits passbolt {
     fail("Use of private class ${name} by ${caller_module_name}")
   }
 
-  ::vcsrepo { '/var/www/passbolt':
+  require ::git
+
+  vcsrepo { '/var/www/passbolt':
     ensure   => 'present',
     provider => 'git',
     source   => 'https://github.com/passbolt/passbolt_api.git',
