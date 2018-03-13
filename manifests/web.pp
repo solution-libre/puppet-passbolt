@@ -21,8 +21,12 @@ class passbolt::web inherits passbolt {
     class {'::php':
       extensions => {
         gd      => {},
-        gnupg   => {},
-        mysqlnd => {},
+        gnupg   => {
+          package_prefix => 'php-',
+        },
+        mysql => {
+          so_name => 'mysqlnd',
+        },
       }
     }
   }
